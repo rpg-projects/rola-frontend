@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts docs",
+    "build": "react-scripts build && powershell -Command \"Copy-Item -Path build\\* -Destination docs -Recurse -Force; Remove-Item -Recurse -Force build\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

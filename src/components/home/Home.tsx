@@ -1,7 +1,6 @@
-import axios, { AxiosError } from "axios";
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { Button } from "baseui/button";
-import { HeadingXXLarge } from "baseui/typography";
 import { useNavigate } from "react-router-dom";
 import { useSignOut, useAuthUser } from "react-auth-kit";
 import { Container } from "../commons";

@@ -1,21 +1,6 @@
 import { Button } from "baseui/button";
-import { Input } from "baseui/input";
-import styled from "styled-components";
-import {
-  HeadingXXLarge,
-  HeadingXLarge,
-  HeadingLarge,
-  HeadingMedium,
-  HeadingSmall,
-  HeadingXSmall,
-} from "baseui/typography";
-import {
-  Container,
-  ErrorText,
-  InnerContainer,
-  InputWrapper,
-  StyledInput,
-} from "../commons";
+
+import { Container, ErrorText, InputWrapper, StyledInput } from "../commons";
 
 import "./register.css";
 

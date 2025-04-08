@@ -10,7 +10,7 @@ import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoBox } from "../logo-box/logoBox";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 
 function Register(props: any) {
   const [error, setError] = useState("");
@@ -19,18 +19,18 @@ function Register(props: any) {
   const navigate = useNavigate();
 
   // Validation schema using Yup
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .required("Email é obrigatório")
-      .email("Endereço de email inválido"),
-    player_id: Yup.string().min(4, "Player_id precisa ter pelo menos 4 letras"),
-    password: Yup.string()
-      .required("Senha é obrigatória")
-      .min(8, "Password must be at least 8 characters long"),
-    confirmPassword: Yup.string()
-      .required("Por favor confirme a senha")
-      .oneOf([Yup.ref("password")], "Senhas diferentes"),
-  });
+  // const validationSchema = Yup.object({
+  //   email: Yup.string()
+  //     .required("Email é obrigatório")
+  //     .email("Endereço de email inválido"),
+  //   player_id: Yup.string().min(4, "Player_id precisa ter pelo menos 4 letras"),
+  //   password: Yup.string()
+  //     .required("Senha é obrigatória")
+  //     .min(8, "Password must be at least 8 characters long"),
+  //   confirmPassword: Yup.string()
+  //     .required("Por favor confirme a senha")
+  //     .oneOf([Yup.ref("password")], "Senhas diferentes"),
+  // });
 
   const onSubmit = async (values: any) => {
     setError("");
@@ -44,6 +44,7 @@ function Register(props: any) {
             )
           : await axios.post("process.env.REACT_APP_BACKEND_URL/users", values);
 
+      console.log("user", userCreated.data.name);
       const response =
         process.env.REACT_APP_ENV === "prod"
           ? await axios.post(

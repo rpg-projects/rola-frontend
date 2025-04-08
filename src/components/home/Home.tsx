@@ -38,7 +38,6 @@ function Home() {
   const [loading, setLoading] = useState(true); // State to handle loading status
   const [error, setError] = useState(""); // State for errors
 
-  const id = auth()!.id;
   const playerId = auth()!.playerId;
 
   const logout = () => {

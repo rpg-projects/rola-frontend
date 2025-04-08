@@ -37,7 +37,7 @@ function Register(props: any) {
 
     try {
       const userCreated =
-        process.env.REACT_APP_ENV == "prod"
+        process.env.REACT_APP_ENV === "prod"
           ? await axios.post(
               "process.env.REACT_APP_BACKEND_PROD_URL/users",
               values
@@ -45,7 +45,7 @@ function Register(props: any) {
           : await axios.post("process.env.REACT_APP_BACKEND_URL/users", values);
 
       const response =
-        process.env.REACT_APP_ENV == "prod"
+        process.env.REACT_APP_ENV === "prod"
           ? await axios.post(
               "process.env.REACT_APP_BACKEND_PROD_URL/auth/login",
               values

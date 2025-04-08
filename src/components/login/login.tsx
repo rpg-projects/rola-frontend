@@ -32,7 +32,7 @@ function Login(props: any) {
 
     try {
       const response =
-        process.env.REACT_APP_ENV == "prod"
+        process.env.REACT_APP_ENV === "prod"
           ? await axios.post(
               "process.env.REACT_APP_BACKEND_PROD_URL/auth/login",
               values

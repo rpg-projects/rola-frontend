@@ -10,13 +10,7 @@ import { AuthProvider } from "react-auth-kit";
 import { Provider as StyletronProvider } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 
-import {
-  LightTheme,
-  BaseProvider,
-  styled,
-  DarkTheme,
-  createDarkTheme,
-} from "baseui";
+import { BaseProvider, styled, DarkTheme } from "baseui";
 
 const engine = new Styletron();
 

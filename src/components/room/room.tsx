@@ -15,7 +15,7 @@ interface Message {
 
 // Connect to the server using socket.io
 const socket =
-  process.env.REACT_APP_ENV == "prod"
+  process.env.REACT_APP_ENV === "prod"
     ? io("process.env.REACT_APP_BACKEND_PROD_URL")
     : io("process.env.REACT_APP_BACKEND_URL"); // Make sure to use the correct backend URL
 

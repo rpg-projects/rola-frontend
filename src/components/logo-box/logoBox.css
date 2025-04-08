@@ -1,0 +1,26 @@
+.box {
+  position: absolute;
+  top: 0; /* Aligns the box to the top */
+  right: 0; /* Aligns the box to the right */
+  margin-right: 2%;
+  margin-top: -1.2rem;
+  z-index: 3; /* Optional: Ensure the box is above other content */
+  display: flex;
+}
+
+.nome {
+  vertical-align: middle;
+  font-size: 1.2rem;
+}
+
+.img {
+  margin-top: 12%;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+/* .box,
+.nome,
+.img {
+  border: red 1px solid;
+} */

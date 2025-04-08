@@ -1,0 +1,101 @@
+/* .container-home {
+  width: 30%;
+  height: 50%;
+  background-color: #d9d9d9;
+} */
+
+.container-home {
+  align-items: center;
+  justify-content: center;
+  width: 48rem;
+  height: 60%;
+  margin-top: -5%;
+  background-color: #d9d9d9;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
+    /* Subtle top shadow */ 0 4px 6px rgba(0, 0, 0, 0.1); /* Stronger bottom shadow */
+  position: relative; /* Enable relative positioning for children */
+}
+
+.logo-box-home {
+  margin-top: 20px;
+  background-color: red;
+}
+
+.titulo-home {
+  margin-left: 3%;
+  font-size: 2rem !important;
+}
+
+.lista-de-salas {
+  position: absolute; /* Permite posicionamento baseado no container-pai */
+  top: 50%; /* Move para o centro vertical */
+  left: 50%; /* Move para o centro horizontal */
+  transform: translate(-50%, -50%); /* Centraliza ajustando o ponto de origem */
+  width: 40%; /* Largura da lista, ajuste conforme necessário */
+  max-width: 600px; /* Limita a largura máxima */
+  padding: 20px; /* Espaçamento interno */
+  background-color: #ffffff; /* Cor de fundo */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+  text-align: center; /* Opcional: Centraliza o texto */
+}
+
+.lista-de-salas h1 {
+  font-size: 1rem;
+}
+
+.lista-de-salas ul {
+  list-style: none; /* Remove os marcadores padrão da lista */
+  padding: 0; /* Remove o padding interno */
+  margin: 0; /* Remove a margem padrão */
+}
+
+.lista-de-salas li {
+  background-color: #f5f5f5; /* Cor de fundo para cada item */
+  margin: 8px 0; /* Margem entre os itens */
+
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Pequena sombra para destaque */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animação suave */
+}
+
+.lista-de-salas li:hover {
+  transform: translateY(-4px); /* Levanta o item ao passar o mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+  background-color: #eaeaea; /* Cor de fundo mais clara no hover */
+}
+
+.lista-de-salas a {
+  display: block; /* Faz o link englobar toda a área do li */
+  text-decoration: none; /* Remove o sublinhado dos links */
+  color: #333; /* Cor do texto */
+  font-weight: bold; /* Destaca o texto */
+  padding: 10px 15px; /* Espaçamento interno */
+}
+
+.lista-de-salas a:hover {
+  color: #000; /* Cor mais escura no hover */
+  text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.logout-button-home {
+  margin: 10px; /* Add some margin from the edges */
+  padding: 8px 16px;
+  color: white !important;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px; /* Adjust spacing from the bottom */
+  right: 10px; /* Adjust spacing from the right */
+}
+
+.logout-button-home .bp {
+  background-color: #554f4b !important;
+}
+
+.logout-button-home:hover {
+  background-color: #0056b3;
+}

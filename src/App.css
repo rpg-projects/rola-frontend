@@ -1,0 +1,88 @@
+.sorts-mill-goudy-regular {
+  font-family: "Sorts Mill Goudy", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.sorts-mill-goudy-regular-italic {
+  font-family: "Sorts Mill Goudy", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.graduate-regular {
+  font-family: "Graduate", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+*,
+h1,
+span,
+p {
+  font-family: "Sorts Mill Goudy", serif;
+  color: #4b3931 !important;
+}
+
+h1 {
+  font-size: x-large;
+}
+
+.bu {
+  padding-right: 8px !important;
+}
+
+.bt {
+  padding-left: 8px !important;
+}
+
+.bs {
+  padding-bottom: 8px !important;
+}
+
+.br {
+  padding-top: 8px !important;
+}
+
+.b1 {
+  font-size: 14px !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

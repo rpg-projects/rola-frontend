@@ -1,0 +1,109 @@
+.outer-container-rooms {
+  color: #4b3931;
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Ensure it covers the full height of the viewport */
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-image: url(../../assets/login-bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.outer-container-rooms::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* White overlay with 50% opacity */
+  z-index: 1;
+}
+
+.outer-container-rooms > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Room container */
+.room-container {
+  width: 80%;
+  height: 40rem;
+  max-width: 1000px;
+  margin-top: -4rem;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Messages container */
+.messages-container {
+  height: 30rem;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual message styling */
+.message {
+  padding: 8px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background-color: #f4f4f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message strong {
+  color: #00796b;
+}
+
+.timestamp {
+  font-size: 0.85em;
+  color: #607d8b;
+  margin-left: 8px;
+}
+
+/* Input container */
+.message-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Input field */
+.message-input-container input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #00796b;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Send button */
+.message-input-container button {
+  width: 15%;
+  padding: 10px;
+  margin-left: 10px;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.message-input-container button:hover {
+  background-color: #004d40;
+}

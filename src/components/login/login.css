@@ -1,0 +1,108 @@
+.outer-cont {
+  color: #4b3931;
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Instead of height: 100%; to make sure it covers the screen */
+  background-image: url(../../assets/login-bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.outer-cont::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* White overlay with 50% opacity */
+  z-index: 1;
+}
+
+.outer-cont > * {
+  position: relative;
+  z-index: 2;
+}
+
+.login-box {
+  align-items: center;
+  justify-content: center;
+  width: 48rem;
+  height: 60%;
+  margin-top: -5%;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
+    /* Subtle top shadow */ 0 4px 6px rgba(0, 0, 0, 0.1); /* Stronger bottom shadow */
+}
+
+.login-image {
+  width: 70%;
+  height: 70%;
+  background-image: url(../../assets/login-image.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 4rem;
+  border-radius: 1rem 0rem 0rem 1rem;
+}
+
+.login-form {
+  width: 55%;
+  height: 70%;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 4rem;
+  border-radius: 0rem 1rem 1rem 0rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 0.8rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.bc,
+.b8,
+.b7,
+.cy {
+  background-color: #d9d9d9 !important;
+}
+
+.bv {
+  caret-color: #908378 !important;
+}
+
+.b0 {
+  font-family: "Sorts Mill Goudy", serif;
+}
+
+.b7 {
+  border-bottom-color: #908378 !important;
+}
+.b6 {
+  border-top-color: #908378 !important;
+}
+.b5 {
+  border-right-color: #908378 !important;
+}
+.b4 {
+  border-left-color: #908378 !important;
+}

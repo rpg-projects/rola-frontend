@@ -21,7 +21,7 @@ const socket =
 
 const Room = () => {
   const auth = useAuthUser();
-  const id = auth()!.id;
+
   const playerId = auth()!.playerId;
 
   const { roomName } = useParams<{ roomName: string }>(); // Get the room name from the URL

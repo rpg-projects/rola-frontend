@@ -46,10 +46,16 @@ function Login(props: any) {
     setError("");
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/auth/login",
-        values
-      );
+      const response =
+        process.env.REACT_APP_ENV == "prod"
+          ? await axios.post(
+              "process.env.REACT_APP_BACKEND_PROD_URL/auth/login",
+              values
+            )
+          : await axios.post(
+              "process.env.REACT_APP_BACKEND_URL/auth/login",
+              values
+            );
 
       //salva nos cookies e autentica
       signIn({

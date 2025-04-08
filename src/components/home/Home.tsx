@@ -50,10 +50,16 @@ function Home() {
   useEffect(() => {
     // Fetch rooms when the component mounts
     const fetchRooms = async () => {
+      console.log("process.env.REACT_APP_ENV :>> ", process.env.REACT_APP_ENV);
       try {
-        const response = await axios.get("http://localhost:8080/rooms", {
-          withCredentials: true,
-        });
+        const response =
+          process.env.REACT_APP_ENV == "prod"
+            ? await axios.get("process.env.REACT_APP_BACKEND_PROD_URL/rooms", {
+                withCredentials: true,
+              })
+            : await axios.get("process.env.REACT_APP_BACKEND_URL/rooms", {
+                withCredentials: true,
+              });
         setRooms(response.data); // Set rooms with API response
       } catch (err) {
         console.log("Error fetching rooms:", err);

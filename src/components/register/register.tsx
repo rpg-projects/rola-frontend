@@ -51,15 +51,24 @@ function Register(props: any) {
     setError("");
 
     try {
-      const userCreated = await axios.post(
-        "http://localhost:8080/users",
-        values
-      );
-      console.log("userCreated :>> ", userCreated);
-      const response = await axios.post(
-        "http://localhost:8080/auth/login",
-        values
-      );
+      const userCreated =
+        process.env.REACT_APP_ENV == "prod"
+          ? await axios.post(
+              "process.env.REACT_APP_BACKEND_PROD_URL/users",
+              values
+            )
+          : await axios.post("process.env.REACT_APP_BACKEND_URL/users", values);
+
+      const response =
+        process.env.REACT_APP_ENV == "prod"
+          ? await axios.post(
+              "process.env.REACT_APP_BACKEND_PROD_URL/auth/login",
+              values
+            )
+          : await axios.post(
+              "process.env.REACT_APP_BACKEND_URL/auth/login",
+              values
+            );
       //salva nos cookies e autentica
       signIn({
         token: response.data.token,

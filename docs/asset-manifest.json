@@ -12,8 +12,5 @@
     "main.e90a133b.js.map": "/rola-frontend/static/js/main.e90a133b.js.map",
     "453.11f38227.chunk.js.map": "/rola-frontend/static/js/453.11f38227.chunk.js.map"
   },
-  "entrypoints": [
-    "static/css/main.098c4ef3.css",
-    "static/js/main.e90a133b.js"
-  ]
+  "entrypoints": ["static/css/main.098c4ef3.css", "static/js/main.e90a133b.js"]
 }

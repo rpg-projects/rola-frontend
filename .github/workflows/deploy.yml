@@ -3,17 +3,17 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # ou 'master', se for o seu branch principal
+      - main
 
 jobs:
   build:
-    runs-on: windows-latest  # Para compatibilidade com PowerShell
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -21,17 +21,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and move to docs
+      - name: Build project
         run: npm run build
         env:
           REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
           REACT_APP_BACKEND_PROD_URL: ${{ secrets.REACT_APP_BACKEND_PROD_URL }}
 
-      - name: Commit docs folder
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs
-          git commit -m "Update docs folder" || echo "No changes to commit"
-          git push
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

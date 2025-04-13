@@ -10,6 +10,8 @@ import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoBox } from "../logo-box/logoBox";
+
+import loginImage from "../../assets/login-image.jpg";
 // import * as Yup from "yup";
 
 function Login(props: any) {
@@ -71,7 +73,7 @@ function Login(props: any) {
       <div className="login-box">
         <LogoBox />
         <div className="login-image">
-          <img src="../../assets/login-image.jpg" alt="" />
+          <img src={loginImage} alt="" />
         </div>
         <div className="login-form">
           <form onSubmit={formik.handleSubmit}>

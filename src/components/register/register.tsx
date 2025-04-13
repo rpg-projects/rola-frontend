@@ -12,6 +12,9 @@ import { useNavigate } from "react-router-dom";
 import { LogoBox } from "../logo-box/logoBox";
 // import * as Yup from "yup";
 
+// import registerImage from "../../assets/register-image.jpg";
+import registerImage from "../../assets/register-img.jpg";
+
 function Register(props: any) {
   const [error, setError] = useState("");
   const signIn = useSignIn();
@@ -82,7 +85,7 @@ function Register(props: any) {
       <div className="register-box">
         <LogoBox style={{ marginTop: "-1rem" }} />
         <div className="register-image">
-          <img src="../../assets/register-image.jpg" alt="" />
+          <img src={registerImage} alt="" />
         </div>
         <div className="register-form">
           <form onSubmit={formik.handleSubmit}>

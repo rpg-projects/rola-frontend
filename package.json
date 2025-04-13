@@ -1,6 +1,5 @@
 {
   "name": "react-easy-auth",
-  "homepage": "https://rpg-projects.github.io/rola-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -29,9 +29,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && powershell -Command \"New-Item -ItemType Directory -Force -Path docs; Copy-Item -Path build\\* -Destination docs -Recurse -Force; Remove-Item -Recurse -Force build\"",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "gh-pages": "^6.3.0"
   }
 }

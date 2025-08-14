@@ -39,16 +39,14 @@ function Register(props: any) {
     setError("");
 
     try {
-      const userCreated = await axios.post(
-        "https://rola-backend.onrender.com/users",
-        values
-      );
+      const backendUrl =
+        process.env.REACT_APP_ENV === "prod"
+          ? process.env.REACT_APP_BACKEND_PROD_URL
+          : process.env.REACT_APP_BACKEND_URL;
 
-      console.log("user", userCreated.data.name);
-      const response = await axios.post(
-        "https://rola-backend.onrender.com/auth/login",
-        values
-      );
+      const userCreated = await axios.post(`${backendUrl}/users`, values);
+
+      const response = await axios.post(`${backendUrl}/auth/login`, values);
       //salva nos cookies e autentica
       signIn({
         token: response.data.token,

@@ -33,10 +33,12 @@ function Login(props: any) {
     setError("");
 
     try {
-      const response = await axios.post(
-        "https://rola-backend.onrender.com/auth/login",
-        values
-      );
+      const backendUrl =
+        process.env.REACT_APP_ENV === "prod"
+          ? process.env.REACT_APP_BACKEND_PROD_URL
+          : process.env.REACT_APP_BACKEND_URL;
+
+      const response = await axios.post(`${backendUrl}/auth/login`, values);
 
       //salva nos cookies e autentica
       signIn({
@@ -49,6 +51,7 @@ function Login(props: any) {
           playerId: response.data.player_id,
         },
       });
+      console.log("response :>> ", response);
 
       navigate("/");
     } catch (err) {

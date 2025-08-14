@@ -22,6 +22,8 @@ const Centered = styled("div", {
   width: "100%",
 });
 
+const basename = process.env.NODE_ENV === "production" ? "/rola-frontend" : "/";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -41,7 +43,7 @@ root.render(
           cookieSecure={false}
         >
           <Centered>
-            <BrowserRouter>
+            <BrowserRouter basename={basename}>
               <App />
             </BrowserRouter>
           </Centered>

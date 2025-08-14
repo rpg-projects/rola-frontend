@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rola-frontend/static/css/main.098c4ef3.css",
-    "main.js": "/rola-frontend/static/js/main.75f5734b.js",
+    "main.js": "/rola-frontend/static/js/main.eab1f00b.js",
     "static/js/453.11f38227.chunk.js": "/rola-frontend/static/js/453.11f38227.chunk.js",
     "static/media/login-bg.jpg": "/rola-frontend/static/media/login-bg.7e46ce9567970ef7b59f.jpg",
     "static/media/register-img.jpg": "/rola-frontend/static/media/register-img.af7cc6d682c4b1a9cc2c.jpg",
@@ -9,11 +9,11 @@
     "static/media/logo.png": "/rola-frontend/static/media/logo.e34594e3d199653f53fb.png",
     "index.html": "/rola-frontend/index.html",
     "main.098c4ef3.css.map": "/rola-frontend/static/css/main.098c4ef3.css.map",
-    "main.75f5734b.js.map": "/rola-frontend/static/js/main.75f5734b.js.map",
+    "main.eab1f00b.js.map": "/rola-frontend/static/js/main.eab1f00b.js.map",
     "453.11f38227.chunk.js.map": "/rola-frontend/static/js/453.11f38227.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.098c4ef3.css",
-    "static/js/main.75f5734b.js"
+    "static/js/main.eab1f00b.js"
   ]
 }

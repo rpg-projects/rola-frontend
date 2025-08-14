@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/rola-frontend/static/css/main.098c4ef3.css",
-    "main.js": "/rola-frontend/static/js/main.bebdd8e0.js",
-    "static/js/453.11f38227.chunk.js": "/rola-frontend/static/js/453.11f38227.chunk.js",
-    "static/media/login-bg.jpg": "/rola-frontend/static/media/login-bg.7e46ce9567970ef7b59f.jpg",
-    "static/media/register-img.jpg": "/rola-frontend/static/media/register-img.af7cc6d682c4b1a9cc2c.jpg",
-    "static/media/login-image.jpg": "/rola-frontend/static/media/login-image.c7aeb21076a89a086f0e.jpg",
-    "static/media/logo.png": "/rola-frontend/static/media/logo.e34594e3d199653f53fb.png",
-    "index.html": "/rola-frontend/index.html",
-    "main.098c4ef3.css.map": "/rola-frontend/static/css/main.098c4ef3.css.map",
-    "main.bebdd8e0.js.map": "/rola-frontend/static/js/main.bebdd8e0.js.map",
-    "453.11f38227.chunk.js.map": "/rola-frontend/static/js/453.11f38227.chunk.js.map"
+    "main.css": "./static/css/main.dc6572c2.css",
+    "main.js": "./static/js/main.e1cdc0e4.js",
+    "static/js/453.11f38227.chunk.js": "./static/js/453.11f38227.chunk.js",
+    "static/media/login-bg.jpg": "./static/media/login-bg.7e46ce9567970ef7b59f.jpg",
+    "static/media/register-img.jpg": "./static/media/register-img.af7cc6d682c4b1a9cc2c.jpg",
+    "static/media/login-image.jpg": "./static/media/login-image.c7aeb21076a89a086f0e.jpg",
+    "static/media/logo.png": "./static/media/logo.e34594e3d199653f53fb.png",
+    "index.html": "./index.html",
+    "main.dc6572c2.css.map": "./static/css/main.dc6572c2.css.map",
+    "main.e1cdc0e4.js.map": "./static/js/main.e1cdc0e4.js.map",
+    "453.11f38227.chunk.js.map": "./static/js/453.11f38227.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.098c4ef3.css",
-    "static/js/main.bebdd8e0.js"
+    "static/css/main.dc6572c2.css",
+    "static/js/main.e1cdc0e4.js"
   ]
 }

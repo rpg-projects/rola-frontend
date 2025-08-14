@@ -51,7 +51,12 @@ function Home() {
     // Fetch rooms when the component mounts
     const fetchRooms = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/rooms", {
+        const backendUrl =
+          process.env.REACT_APP_ENV === "prod"
+            ? process.env.REACT_APP_BACKEND_PROD_URL
+            : process.env.REACT_APP_BACKEND_URL;
+
+        const response = await axios.get(`${backendUrl}/rooms`, {
           withCredentials: true,
         });
         setRooms(response.data); // Set rooms with API response

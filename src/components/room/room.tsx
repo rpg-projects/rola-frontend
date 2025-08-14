@@ -14,7 +14,12 @@ interface Message {
 }
 
 // Connect to the server using socket.io
-const socket = io("http://localhost:8080"); // Make sure to use the correct backend URL
+const backendUrl =
+  process.env.REACT_APP_ENV === "prod"
+    ? process.env.REACT_APP_BACKEND_PROD_URL
+    : process.env.REACT_APP_BACKEND_URL;
+
+const socket = io(backendUrl); // Make sure to use the correct backend URL
 
 const Room = () => {
   const auth = useAuthUser();

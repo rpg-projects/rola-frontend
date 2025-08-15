@@ -28,11 +28,7 @@ const Room = () => {
   const playerId = auth()!.playerId;
   const userId = auth()!.id;
 
-  const location = useLocation();
-  const { roomId, roomName } = location.state as {
-    roomId: string;
-    roomName: string;
-  };
+  const { roomName } = useParams<{ roomName: string }>(); // Get the room name from the URL
 
   const [messages, setMessages] = useState<Message[]>([]); // Store messages
   const [newMessage, setNewMessage] = useState(""); // Store the new message input
@@ -40,11 +36,11 @@ const Room = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(`${backendUrl}/messages/room/${roomId}`);
+        const res = await axios.get(`${backendUrl}/messages/room/${roomName}`);
 
         // Padroniza o formato
         const formattedMessages: Message[] = res.data.map((m: any) => ({
-          user: m.user_name || (m.user_id === userId ? playerId : m.user_id),
+          user: m.player_id || (m.user_id === userId ? playerId : m.user_id),
           content: m.text,
           timestamp: new Date(m.created_at).getTime(),
         }));
@@ -95,18 +91,29 @@ const Room = () => {
   const sendMessage = async () => {
     if (newMessage.trim()) {
       try {
-        await axios.post(`${backendUrl}/messages`, {
-          room_id: roomId, // ou o ID real da sala, se não for o nome
+        const result = await axios.post(`${backendUrl}/messages`, {
+          room_name: roomName,
+          player_id: playerId,
           user_id: userId,
           text: newMessage,
         });
+
+        const content = result.data.result
+          ? `rolou um ${result.data.text.split(" ")[0]} ${
+              result.data.text.split(" ")[1].split(" ")[0]
+            } ${result.data.mod} e resultou em ${result.data.result} (${
+              result.data.dice
+            } ${result.data.text.split(" ")[1].split(" ")[0]} ${
+              result.data.mod
+            })`
+          : newMessage;
 
         // emitir para o socket
         socket.emit("send_message", {
           roomName,
           message: {
             user: playerId,
-            content: newMessage,
+            content,
             timestamp: Date.now(),
           },
         });

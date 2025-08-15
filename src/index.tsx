@@ -42,7 +42,7 @@ root.render(
           cookieSecure={false}
         >
           <Centered>
-            <HashRouter basename={basename}>
+            <HashRouter>
               <App />
             </HashRouter>
           </Centered>

@@ -8,7 +8,7 @@ import { useAuthUser, useSignIn } from "react-auth-kit";
 import { useFormik } from "formik";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LogoBox } from "../logo-box/logoBox";
 
 import loginImage from "../../assets/login-image.jpg";
@@ -113,9 +113,9 @@ function Login(props: any) {
                 type="password"
               />
             </InputWrapper>
-            <a style={{ color: "black", marginLeft: "1px" }} href="/sign-up">
+            <Link to="/sign-up" style={{ color: "black", marginLeft: "1px" }}>
               cadastrar novo usuário
-            </a>
+            </Link>
             <InputWrapper>
               <Button
                 style={{

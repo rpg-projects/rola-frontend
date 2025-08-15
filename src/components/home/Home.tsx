@@ -86,7 +86,10 @@ function Home() {
             <ul>
               {rooms.map((room) => (
                 <li key={room._id}>
-                  <Link to={`/room/${room.name}`}>
+                  <Link
+                    to={`/room/${room.name}`}
+                    state={{ roomId: room._id, roomName: room.name }}
+                  >
                     {/* Link englobando todo o elemento */}
                     {room.name}
                   </Link>

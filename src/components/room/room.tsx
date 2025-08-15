@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // To get the room name from the URL
+import { useParams, useLocation } from "react-router-dom"; // To get the room name from the URL
 import io from "socket.io-client"; // Socket.io for real-time communication
+import axios from "axios";
 
 import "./room.css";
 import { useAuthUser } from "react-auth-kit";
@@ -25,12 +26,36 @@ const Room = () => {
   const auth = useAuthUser();
 
   const playerId = auth()!.playerId;
+  const userId = auth()!.id;
 
-  const { roomName } = useParams<{ roomName: string }>(); // Get the room name from the URL
+  const location = useLocation();
+  const { roomId, roomName } = location.state as {
+    roomId: string;
+    roomName: string;
+  };
+
   const [messages, setMessages] = useState<Message[]>([]); // Store messages
   const [newMessage, setNewMessage] = useState(""); // Store the new message input
 
   useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await axios.get(`${backendUrl}/messages/room/${roomId}`);
+
+        // Padroniza o formato
+        const formattedMessages: Message[] = res.data.map((m: any) => ({
+          user: m.user_name || (m.user_id === userId ? playerId : m.user_id),
+          content: m.text,
+          timestamp: new Date(m.created_at).getTime(),
+        }));
+
+        setMessages(formattedMessages);
+      } catch (err) {
+        console.error("Erro ao carregar mensagens:", err);
+      }
+    };
+    fetchMessages();
+
     // Listen for incoming messages from other users in the room
     socket.on("receive_message", (data: Message) => {
       console.log("Received message:", data); // Log the entire message
@@ -48,26 +73,56 @@ const Room = () => {
     };
   }, [roomName]);
 
-  const sendMessage = () => {
+  // const sendMessage = async () => {
+  //   if (newMessage.trim()) {
+  //     const message: Message = {
+  //       user: playerId, // You can replace this with dynamic user data
+  //       content: newMessage,
+  //       timestamp: Date.now(),
+  //     };
+
+  //     await axios.post(`${backendUrl}/messages`, {
+  //       roomName,
+  //       ...message,
+  //     });
+  //     // Emit the message to the server with room name
+  //     socket.emit("send_message", { roomName, message });
+
+  //     // Optionally clear the input field after sending
+  //     setNewMessage("");
+  //   }
+  // };
+  const sendMessage = async () => {
     if (newMessage.trim()) {
-      const message: Message = {
-        user: playerId, // You can replace this with dynamic user data
-        content: newMessage,
-        timestamp: Date.now(),
-      };
+      try {
+        await axios.post(`${backendUrl}/messages`, {
+          room_id: roomId, // ou o ID real da sala, se não for o nome
+          user_id: userId,
+          text: newMessage,
+        });
 
-      // Emit the message to the server with room name
-      socket.emit("send_message", { roomName, message });
+        // emitir para o socket
+        socket.emit("send_message", {
+          roomName,
+          message: {
+            user: playerId,
+            content: newMessage,
+            timestamp: Date.now(),
+          },
+        });
 
-      // Optionally clear the input field after sending
-      setNewMessage("");
+        setNewMessage("");
+      } catch (err) {
+        console.error("Erro ao enviar mensagem:", err);
+      }
     }
   };
 
   // Handle keydown event to trigger sendMessage on Enter key press
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = async (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      sendMessage();
+      e.preventDefault(); // impede reload ou submit
+      await sendMessage();
     }
   };
 
@@ -84,7 +139,7 @@ const Room = () => {
               <strong>{message.user}</strong>: {message.content}
               <span className="timestamp">
                 {" "}
-                ({new Date(message.timestamp).toLocaleTimeString()})
+                ({new Date(Number(message.timestamp)).toLocaleTimeString()})
               </span>
             </div>
           ))}

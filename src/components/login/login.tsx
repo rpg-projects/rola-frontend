@@ -74,7 +74,7 @@ function Login(props: any) {
   return (
     <Container className="outer-cont">
       <div className="login-box">
-        <LogoBox />
+        <LogoBox style={{ marginTop: "-.3rem", marginRight: ".6rem" }} />
         <div className="login-image">
           <img src={loginImage} alt="" />
         </div>
@@ -100,6 +100,7 @@ function Login(props: any) {
             <InputWrapper
               style={{
                 fontFamily: "Sorts Mill Goudy",
+                marginBottom: "0.2rem",
               }}
             >
               <StyledInput
@@ -112,7 +113,7 @@ function Login(props: any) {
                 type="password"
               />
             </InputWrapper>
-            <a style={{ color: "black" }} href="/sign-up">
+            <a style={{ color: "black", marginLeft: "1px" }} href="/sign-up">
               cadastrar novo usuário
             </a>
             <InputWrapper>

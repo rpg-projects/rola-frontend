@@ -1,40 +1,47 @@
 .register-box {
-  align-items: center;
-  justify-content: center;
-  width: 48rem;
-  height: 60%;
-  margin-top: -5%;
-  background-color: #d9d9d9;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 56rem;
+  height: 36rem;
+  margin-top: -5%;
+  background-color: #d9d9d9;
   box-sizing: border-box;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
     /* Subtle top shadow */ 0 4px 6px rgba(0, 0, 0, 0.1); /* Stronger bottom shadow */
+  border-radius: 1rem;
 }
 
 .register-image {
-  width: 70%;
+  /* width: 70%;
   height: 70%;
   background-image: url(../../assets/register-img.jpg);
   background-size: cover;
-  background-position: center;
+  background-position: center; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6rem 4rem;
+  /* padding: 6rem 4rem;
+  border-radius: 1rem 0rem 0rem 1rem; */
+}
+
+.register-image img {
+  max-height: 36rem;
   border-radius: 1rem 0rem 0rem 1rem;
 }
 
 .register-form {
-  width: 30%;
-  height: 70%;
+  width: 80%;
+  height: 32rem;
   background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6rem 4rem;
+  padding: 2rem 4rem;
   border-radius: 0rem 1rem 1rem 0rem;
 }
 

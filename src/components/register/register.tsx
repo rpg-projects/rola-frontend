@@ -81,7 +81,7 @@ function Register(props: any) {
   return (
     <Container className="outer-cont">
       <div className="register-box">
-        <LogoBox style={{ marginTop: "-1rem" }} />
+        <LogoBox style={{ marginTop: "-.3rem", marginRight: "-1rem" }} />
         <div className="register-image">
           <img src={registerImage} alt="" />
         </div>

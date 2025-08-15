@@ -70,7 +70,7 @@ function Home() {
     fetchRooms();
   }, []);
 
-  if (loading) return <div>Loading rooms...</div>;
+  if (loading) return <div>Carregando salas...</div>;
   if (error) return <div>{error}</div>;
 
   return (

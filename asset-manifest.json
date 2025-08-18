@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.6d8c92ed.css",
-    "main.js": "./static/js/main.bea7e19a.js",
-    "static/js/453.11f38227.chunk.js": "./static/js/453.11f38227.chunk.js",
-    "static/media/login-bg.jpg": "./static/media/login-bg.7e46ce9567970ef7b59f.jpg",
-    "static/media/register-img.jpg": "./static/media/register-img.af7cc6d682c4b1a9cc2c.jpg",
-    "static/media/login-image.jpg": "./static/media/login-image.c7aeb21076a89a086f0e.jpg",
-    "static/media/logo.png": "./static/media/logo.e34594e3d199653f53fb.png",
-    "index.html": "./index.html",
-    "main.6d8c92ed.css.map": "./static/css/main.6d8c92ed.css.map",
-    "main.bea7e19a.js.map": "./static/js/main.bea7e19a.js.map",
-    "453.11f38227.chunk.js.map": "./static/js/453.11f38227.chunk.js.map"
+    "main.css": "/rola-frontend/static/css/main.f139372a.css",
+    "main.js": "/rola-frontend/static/js/main.30786338.js",
+    "static/js/453.11f38227.chunk.js": "/rola-frontend/static/js/453.11f38227.chunk.js",
+    "static/media/image-create-user.png": "/rola-frontend/static/media/image-create-user.355eed267693d9f17e59.png",
+    "static/media/image-login.png": "/rola-frontend/static/media/image-login.189c13c89d9e0c7e1628.png",
+    "static/media/login-bg.jpg": "/rola-frontend/static/media/login-bg.7e46ce9567970ef7b59f.jpg",
+    "static/media/logo.png": "/rola-frontend/static/media/logo.e34594e3d199653f53fb.png",
+    "index.html": "/rola-frontend/index.html",
+    "main.f139372a.css.map": "/rola-frontend/static/css/main.f139372a.css.map",
+    "main.30786338.js.map": "/rola-frontend/static/js/main.30786338.js.map",
+    "453.11f38227.chunk.js.map": "/rola-frontend/static/js/453.11f38227.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d8c92ed.css",
-    "static/js/main.bea7e19a.js"
+    "static/css/main.f139372a.css",
+    "static/js/main.30786338.js"
   ]
 }

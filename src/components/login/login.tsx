@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LogoBox } from "../logo-box/logoBox";
 
-import loginImage from "../../assets/login-image.jpg";
+import loginImage from "../../assets/image-login.png";
 // import * as Yup from "yup";
 
 function Login(props: any) {
@@ -107,13 +107,20 @@ function Login(props: any) {
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                placeholder="Password"
+                placeholder="Senha"
                 clearOnEscape
                 size="large"
                 type="password"
               />
             </InputWrapper>
-            <Link to="/sign-up" style={{ color: "black", marginLeft: "1px" }}>
+            <Link
+              to="/sign-up"
+              style={{
+                color: "black",
+                marginLeft: "1px",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
               cadastrar novo usuário
             </Link>
             <InputWrapper>
@@ -122,7 +129,7 @@ function Login(props: any) {
                   backgroundColor: "#DBC9B9",
                   border: "#908378 solid 3px",
                   width: "70%",
-                  padding: ".8rem",
+                  padding: ".8rem 1rem .6rem",
                 }}
                 className="login-button"
                 size="large"

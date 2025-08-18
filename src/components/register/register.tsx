@@ -13,7 +13,7 @@ import { LogoBox } from "../logo-box/logoBox";
 // import * as Yup from "yup";
 
 // import registerImage from "../../assets/register-image.jpg";
-import registerImage from "../../assets/register-img.jpg";
+import registerImage from "../../assets/image-create-user.png";
 
 function Register(props: any) {
   const [error, setError] = useState("");
@@ -81,7 +81,7 @@ function Register(props: any) {
   return (
     <Container className="outer-cont">
       <div className="register-box">
-        <LogoBox style={{ marginTop: "-.3rem", marginRight: "-1rem" }} />
+        <LogoBox style={{ marginTop: "0rem", marginRight: "1rem" }} />
         <div className="register-image">
           <img src={registerImage} alt="" />
         </div>
@@ -145,13 +145,16 @@ function Register(props: any) {
                   border: "#908378 solid 3px",
                   width: "60%",
                   marginTop: "4%",
+                  padding: ".8rem 1rem .6rem",
                 }}
                 className="register-button"
                 size="large"
                 kind="primary"
                 isLoading={formik.isSubmitting}
               >
-                <span style={{ color: "#4B3931" }}>CADASTRAR</span>
+                <span style={{ color: "#4B3931", margin: "0", padding: "0" }}>
+                  CADASTRAR
+                </span>
               </Button>
             </InputWrapper>
           </form>

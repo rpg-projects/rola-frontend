@@ -6,6 +6,7 @@ import axios from "axios";
 import "./room.css";
 import { useAuthUser } from "react-auth-kit";
 import { LogoBox } from "../logo-box/logoBox";
+import TreatMessage from "../../utils/treatMessage";
 
 // Define types for your data
 interface Message {
@@ -69,51 +70,42 @@ const Room = () => {
     };
   }, [roomName]);
 
-  // const sendMessage = async () => {
-  //   if (newMessage.trim()) {
-  //     const message: Message = {
-  //       user: playerId, // You can replace this with dynamic user data
-  //       content: newMessage,
-  //       timestamp: Date.now(),
-  //     };
-
-  //     await axios.post(`${backendUrl}/messages`, {
-  //       roomName,
-  //       ...message,
-  //     });
-  //     // Emit the message to the server with room name
-  //     socket.emit("send_message", { roomName, message });
-
-  //     // Optionally clear the input field after sending
-  //     setNewMessage("");
-  //   }
-  // };
   const sendMessage = async () => {
     if (newMessage.trim()) {
       try {
-        const result = await axios.post(`${backendUrl}/messages`, {
-          room_name: roomName,
-          player_id: playerId,
-          user_id: userId,
-          text: newMessage,
-        });
+        // tratar mensagem:
+        const {
+          isColor,
+          color,
+          isChangingChar,
+          char,
+          isPassingLine,
+          finalMessage,
+        } = TreatMessage("#ff11ff", newMessage);
 
-        const content = result.data.result
-          ? `rolou um ${result.data.text.split(" ")[0]} ${
-              result.data.text.split(" ")[1].split(" ")[0]
-            } ${result.data.mod} e resultou em ${result.data.result} (${
-              result.data.dice
-            } ${result.data.text.split(" ")[1].split(" ")[0]} ${
-              result.data.mod
-            })`
-          : newMessage;
+        // const response = await axios.post(`${backendUrl}/messages`, {
+        //   room_name: roomName,
+        //   player_id: playerId,
+        //   user_id: userId,
+        //   text: finalMessage,
+        // });
+
+        // const content = result.data.result
+        //   ? `rolou um ${result.data.text.split(" ")[0]} ${
+        //       result.data.text.split(" ")[1].split(" ")[0]
+        //     } ${result.data.mod} e resultou em ${result.data.result} (${
+        //       result.data.dice
+        //     } ${result.data.text.split(" ")[1].split(" ")[0]} ${
+        //       result.data.mod
+        //     })`
+        //   : newMessage;
 
         // emitir para o socket
         socket.emit("send_message", {
           roomName,
           message: {
             user: playerId,
-            content,
+            content: finalMessage,
             timestamp: Date.now(),
           },
         });
@@ -143,7 +135,10 @@ const Room = () => {
         <div className="messages-container">
           {messages.map((message, index) => (
             <div key={index} className="message">
-              <strong>{message.user}</strong>: {message.content}
+              <strong>{message.user}</strong>:{" "}
+              <span
+                dangerouslySetInnerHTML={{ __html: message.content }}
+              ></span>
               <span className="timestamp">
                 {" "}
                 ({new Date(Number(message.timestamp)).toLocaleTimeString()})

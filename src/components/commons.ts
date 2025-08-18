@@ -30,9 +30,20 @@ export const InputWrapper = styled.div`
 `;
 
 export const StyledInput = styled(Input)`
-  width: 100%;
-  margin-bottom: 20em !important;
-  border: #908378 solid 3px !important;
+  && {
+    width: 100%;
+    margin-bottom: 20em;
+    border: 3px solid #908378;
+    background-color: #d9d9d9;
+    caret-color: #908378;
+    font-family: "Sorts Mill Goudy", serif;
+  }
+
+  && input {
+    background-color: #d9d9d9;
+    caret-color: #908378;
+    font-family: "Sorts Mill Goudy", serif;
+  }
 `;
 
 export const ErrorText = styled.span`

@@ -78,7 +78,7 @@ function Home() {
       <div className="container-home">
         <LogoBox style={{ marginTop: "10px" }} className="custom-logo-box" />
         <h1 className="titulo-home" color="secondary500">
-          Olá {playerId[0] + playerId.slice(1).toLowerCase()}!
+          Olá, {playerId[0] + playerId.slice(1).toLowerCase()}!
         </h1>
         <div className="lista-de-salas">
           <h1>Escolha uma sala:</h1>

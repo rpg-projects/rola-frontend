@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   width: 48rem;
-  height: 60%;
+  height: 70%;
   margin-top: -5%;
   background-color: #d9d9d9;
   box-sizing: border-box;
@@ -44,6 +44,8 @@
 
 .lista-de-salas h1 {
   font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
 }
 
 .lista-de-salas ul {

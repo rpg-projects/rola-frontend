@@ -161,7 +161,7 @@ const Room = () => {
             onKeyDown={handleKeyDown}
             placeholder="Escreva aqui..."
           />
-          <button onClick={sendMessage}>Enviar</button>
+          <button onClick={sendMessage}>ENVIAR</button>
         </div>
       </div>
     </div>

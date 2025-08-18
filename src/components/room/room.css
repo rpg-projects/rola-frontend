@@ -68,9 +68,14 @@
   font-family: "Courier New", monospace;
 }
 
-.message strong {
-  color: #00796b;
+.message span,
+b {
+  font-family: "Courier New", monospace;
 }
+
+/* .message strong {
+  color: #00796b;
+} */
 
 .timestamp {
   font-size: 0.85em;

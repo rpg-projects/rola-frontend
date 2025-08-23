@@ -22,7 +22,9 @@ const backendUrl =
     ? process.env.REACT_APP_BACKEND_PROD_URL
     : process.env.REACT_APP_BACKEND_URL;
 
+console.log("backendUrl :>> ", backendUrl);
 const socket = io(backendUrl); // Make sure to use the correct backend URL
+console.log("socket :>> ", socket);
 
 const Room = () => {
   const auth = useAuthUser();

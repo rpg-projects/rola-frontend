@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useLocation } from "react-router-dom"; // To get the room name from the URL
 import io from "socket.io-client"; // Socket.io for real-time communication
 import axios from "axios";
@@ -14,6 +14,8 @@ interface Message {
   content: string;
   timestamp: number;
   message_writer: "user" | "adm";
+  color: string;
+  char?: string;
 }
 
 // Connect to the server using socket.io
@@ -22,9 +24,7 @@ const backendUrl =
     ? process.env.REACT_APP_BACKEND_PROD_URL
     : process.env.REACT_APP_BACKEND_URL;
 
-console.log("backendUrl :>> ", backendUrl);
 const socket = io(backendUrl); // Make sure to use the correct backend URL
-console.log("socket :>> ", socket);
 
 const Room = () => {
   const auth = useAuthUser();
@@ -36,6 +36,10 @@ const Room = () => {
 
   const [messages, setMessages] = useState<Message[]>([]); // Store messages
   const [newMessage, setNewMessage] = useState(""); // Store the new message input
+  const [userColor, setUserColor] = useState("#d5a770"); // Store messages
+  const [userChar, setUserChar] = useState(""); // Store the new message input
+
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -44,13 +48,19 @@ const Room = () => {
 
         // Padroniza o formato
         const formattedMessages: Message[] = res.data.map((m: any) => ({
-          user: m.player_id || (m.user_id === userId ? playerId : m.user_id),
+          user: m.player_id,
           content: m.text,
-          timestamp: new Date(m.created_at).getTime(),
-          writer: m.writer || "user",
+          timestamp: m.created_at,
+          message_writer: m.message_writer || "user",
+          color: m.color,
+          char: m.char,
         }));
 
         setMessages(formattedMessages);
+
+        const user = await axios.get(`${backendUrl}/users/${userId}`);
+        setUserColor(user.data.color ?? userColor);
+        setUserChar(user.data.char ?? userChar);
       } catch (err) {
         console.error("Erro ao carregar mensagens:", err);
       }
@@ -74,21 +84,24 @@ const Room = () => {
     };
   }, [roomName]);
 
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [messages]); // toda vez que messages mudar
+
   const sendMessage = async () => {
     if (newMessage.trim()) {
       try {
         // tratar mensagem:
-        const {
-          isColor,
-          color,
-          isChangingChar,
-          char,
-          isPassingLine,
-          finalMessage,
-          newMessageWriter,
-        } = TreatMessage("#ff11ff", newMessage);
+        const { color, char, finalMessage, newMessageWriter } = TreatMessage(
+          userColor,
+          userChar,
+          newMessage
+        );
 
-        console.log("newMessageWriter :>> ", newMessageWriter);
+        console.log("color :>> ", color);
+        console.log("char :>> ", char);
 
         const response = await axios.post(`${backendUrl}/messages`, {
           room_name: roomName,
@@ -96,7 +109,16 @@ const Room = () => {
           user_id: userId,
           text: finalMessage,
           message_writer: newMessageWriter,
+          color: userColor,
+          char: userChar,
         });
+
+        if (color !== userColor) setUserColor(color);
+        if (char !== userChar) setUserChar(char);
+
+        //color e char vão ter que vir da prop. active char e active color do user!!!
+        console.log("userColor :>> ", userColor);
+        console.log("userChar :>> ", userChar);
 
         // emitir para o socket
         socket.emit("send_message", {
@@ -106,8 +128,12 @@ const Room = () => {
             content: finalMessage,
             timestamp: Date.now(),
             message_writer: newMessageWriter,
+            char: userChar,
+            color: userColor,
           },
         });
+
+        //chamar o backend para atualizar userColor ou userChar se necessário
 
         setNewMessage("");
       } catch (err) {
@@ -131,17 +157,35 @@ const Room = () => {
         <h1>Sala: {roomName}</h1>
 
         {/* Messages container */}
-        <div className="messages-container">
+        <div className="messages-container" ref={containerRef}>
           {messages.map((message, index) => (
             <div key={index} className="message">
-              <strong>{message.user}</strong>
-              {message.message_writer === "user" ? ": " : " "}
+              {message.char !== "" ? (
+                <>
+                  <span
+                    style={{
+                      color: message.color,
+                    }}
+                  >
+                    ({message.user})
+                  </span>
+                  <strong>{message.char}</strong>
+                </>
+              ) : (
+                <strong style={{ color: message.color }}>{message.user}</strong>
+              )}
+              {message.message_writer === "user" ? <span>: </span> : " "}
               <span
                 dangerouslySetInnerHTML={{ __html: message.content }}
               ></span>
               <span className="timestamp">
                 {" "}
-                ({new Date(Number(message.timestamp)).toLocaleTimeString()})
+                (
+                {new Date(message.timestamp).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+                )
               </span>
             </div>
           ))}

@@ -17,7 +17,7 @@ interface Extras {
   isColor: boolean;
   color: string;
   isChangingChar: boolean;
-  char: string | undefined;
+  char: string;
   isPassingLine: boolean;
   finalMessage: string;
   newMessageWriter: string;
@@ -39,7 +39,7 @@ export function isNumeric(str: string) {
   }
 }
 
-const TreatMessage = (color: string, newMessage: any): Extras => {
+const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
   let isRoll = false,
     dice = 0,
     diceResult = 0,
@@ -48,7 +48,6 @@ const TreatMessage = (color: string, newMessage: any): Extras => {
     finalResult = 0,
     isColor = false,
     isChangingChar = false,
-    char,
     isPassingLine = false,
     finalMessage = newMessage,
     newMessageWriter = "user";
@@ -69,18 +68,21 @@ const TreatMessage = (color: string, newMessage: any): Extras => {
 
     finalMessage =
       signal && mod
-        ? `rolou um #d${dice} ${signal} ${mod} e tirou <b>${finalResult}</b>`
-        : `rolou um #d${dice} e tirou <b>${finalResult}</b>`;
+        ? `rolou um <span style="color: ${color}">#d${dice} ${signal} ${mod}</span> e tirou <b>${finalResult}</b>`
+        : `rolou um <span style="color: ${color}">#d${dice}</span> e tirou <b>${finalResult}</b>`;
 
     if (diceResult === 1 || diceResult === 20) {
       finalMessage =
         signal && mod
-          ? finalMessage + ` (natural ${diceResult} ${signal} ${mod})`
-          : finalMessage + ` (natural ${diceResult})`;
+          ? finalMessage +
+            ` (<span style="color: ${color}"><b>natural ${diceResult}</b> ${signal} ${mod}</span>)`
+          : finalMessage +
+            ` (<span style="color: ${color}"><b>natural ${diceResult}</b></span>)`;
     } else {
       finalMessage =
         signal && mod
-          ? finalMessage + ` (${diceResult} ${signal} ${mod})`
+          ? finalMessage +
+            ` (<span style="color: ${color}">${diceResult} ${signal} ${mod}</span>)`
           : finalMessage;
     }
   } else if (newMessage.startsWith("/char")) {

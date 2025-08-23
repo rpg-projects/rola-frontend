@@ -56,6 +56,8 @@ const Room = () => {
           char: m.char,
         }));
 
+        res.data.map((m: { created_at: any }) => console.log(m.created_at));
+
         setMessages(formattedMessages);
 
         const user = await axios.get(`${backendUrl}/users/${userId}`);
@@ -100,9 +102,6 @@ const Room = () => {
           newMessage
         );
 
-        console.log("color :>> ", color);
-        console.log("char :>> ", char);
-
         const response = await axios.post(`${backendUrl}/messages`, {
           room_name: roomName,
           player_id: playerId,
@@ -126,7 +125,7 @@ const Room = () => {
           message: {
             user: playerId,
             content: finalMessage,
-            timestamp: Date.now(),
+            timestamp: response.data.created_at ?? Date.now(),
             message_writer: newMessageWriter,
             char: userChar,
             color: userColor,
@@ -180,12 +179,7 @@ const Room = () => {
               ></span>
               <span className="timestamp">
                 {" "}
-                (
-                {new Date(message.timestamp).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-                )
+                ({new Date(message.timestamp).toLocaleTimeString()})
               </span>
             </div>
           ))}

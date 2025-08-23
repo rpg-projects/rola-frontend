@@ -20,6 +20,7 @@ interface Extras {
   char: string | undefined;
   isPassingLine: boolean;
   finalMessage: string;
+  newMessageWriter: string;
 }
 
 export function getRandomIntInclusive(min: number, max: number) {
@@ -49,7 +50,8 @@ const TreatMessage = (color: string, newMessage: any): Extras => {
     isChangingChar = false,
     char,
     isPassingLine = false,
-    finalMessage = newMessage;
+    finalMessage = newMessage,
+    newMessageWriter = "user";
 
   if (newMessage.startsWith("#d")) {
     isRoll = true;
@@ -84,22 +86,27 @@ const TreatMessage = (color: string, newMessage: any): Extras => {
   } else if (newMessage.startsWith("/char")) {
     isChangingChar = true;
     char = newMessage.split(" ")[1].split(" ")[0];
-    finalMessage = `Char atualizado para <b>${char}</b>`;
+    finalMessage = `atualizou char para <b>${char}</b>`;
   } else if (newMessage.startsWith("/color")) {
     isColor = true;
     color = newMessage.split(" ")[1].split(" ")[0];
-    finalMessage = `Cor atualizada para ${color}`;
+    finalMessage = `atualizou cor para ${color}`;
   } else if (newMessage.startsWith("/-") || newMessage.startsWith("---")) {
+    isPassingLine = true;
     finalMessage = `<hr>`;
   }
 
+  if (isColor || isChangingChar || isPassingLine || isRoll)
+    newMessageWriter = "adm";
+
   return {
-    isColor: false,
+    isColor,
     color,
-    isChangingChar: false,
+    isChangingChar,
     char,
-    isPassingLine: false,
+    isPassingLine,
     finalMessage,
+    newMessageWriter,
   };
 };
 

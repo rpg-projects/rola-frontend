@@ -13,6 +13,7 @@ interface Message {
   user: string;
   content: string;
   timestamp: number;
+  message_writer: "user" | "adm";
 }
 
 // Connect to the server using socket.io
@@ -44,6 +45,7 @@ const Room = () => {
           user: m.player_id || (m.user_id === userId ? playerId : m.user_id),
           content: m.text,
           timestamp: new Date(m.created_at).getTime(),
+          writer: m.writer || "user",
         }));
 
         setMessages(formattedMessages);
@@ -81,24 +83,18 @@ const Room = () => {
           char,
           isPassingLine,
           finalMessage,
+          newMessageWriter,
         } = TreatMessage("#ff11ff", newMessage);
 
-        // const response = await axios.post(`${backendUrl}/messages`, {
-        //   room_name: roomName,
-        //   player_id: playerId,
-        //   user_id: userId,
-        //   text: finalMessage,
-        // });
+        console.log("newMessageWriter :>> ", newMessageWriter);
 
-        // const content = result.data.result
-        //   ? `rolou um ${result.data.text.split(" ")[0]} ${
-        //       result.data.text.split(" ")[1].split(" ")[0]
-        //     } ${result.data.mod} e resultou em ${result.data.result} (${
-        //       result.data.dice
-        //     } ${result.data.text.split(" ")[1].split(" ")[0]} ${
-        //       result.data.mod
-        //     })`
-        //   : newMessage;
+        const response = await axios.post(`${backendUrl}/messages`, {
+          room_name: roomName,
+          player_id: playerId,
+          user_id: userId,
+          text: finalMessage,
+          message_writer: newMessageWriter,
+        });
 
         // emitir para o socket
         socket.emit("send_message", {
@@ -107,6 +103,7 @@ const Room = () => {
             user: playerId,
             content: finalMessage,
             timestamp: Date.now(),
+            message_writer: newMessageWriter,
           },
         });
 
@@ -135,7 +132,8 @@ const Room = () => {
         <div className="messages-container">
           {messages.map((message, index) => (
             <div key={index} className="message">
-              <strong>{message.user}</strong>:{" "}
+              <strong>{message.user}</strong>
+              {message.message_writer === "user" ? ": " : " "}
               <span
                 dangerouslySetInnerHTML={{ __html: message.content }}
               ></span>

@@ -116,7 +116,9 @@ const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
     }
   } else if (newMessage.startsWith("/char")) {
     isChangingChar = true;
-    char = newMessage.split(" ")[1].split(" ")[0];
+    console.log("newMessage :>> ", newMessage);
+    char = newMessage.split("/char ")[1];
+    console.log("char :>> ", char);
     finalMessage = `atualizou char para <b>${char}</b>`;
   } else if (newMessage.startsWith("/color")) {
     console.log("newMessage :>> ", newMessage);
@@ -128,7 +130,7 @@ const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
     isPassingLine = true;
     finalMessage = `<hr>`;
   } else if (newMessage.startsWith("/b")) {
-    finalMessage = `<b>${newMessage.split(" ")[1]}</b>`;
+    finalMessage = `<b>${newMessage.split("/b ")[1]}</b>`;
   }
 
   if (isColor || isChangingChar || isPassingLine || isRoll)

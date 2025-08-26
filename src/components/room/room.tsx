@@ -252,9 +252,16 @@ const Room = () => {
           )}
 
           <div className="message-input-container">
-            <div className="username-on-input">
+            <div
+              className="username-on-input"
+              style={{
+                display: "inline-block", // ocupa só o espaço necessário
+                whiteSpace: "nowrap",
+                verticalAlign: "middle",
+              }}
+            >
               {userChar !== "" ? (
-                <div className="username" style={{ display: "inline" }}>
+                <div className="username" style={{ display: "inline-block" }}>
                   <span
                     style={{
                       color: "#9898a7",

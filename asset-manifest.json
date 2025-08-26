@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/rola-frontend/static/css/main.e256e4c9.css",
-    "main.js": "/rola-frontend/static/js/main.a6b144c5.js",
+    "main.css": "/rola-frontend/static/css/main.44ad3caa.css",
+    "main.js": "/rola-frontend/static/js/main.d5e7efdc.js",
     "static/js/453.11f38227.chunk.js": "/rola-frontend/static/js/453.11f38227.chunk.js",
     "static/media/image-create-user.png": "/rola-frontend/static/media/image-create-user.355eed267693d9f17e59.png",
     "static/media/image-login.png": "/rola-frontend/static/media/image-login.189c13c89d9e0c7e1628.png",
     "static/media/login-bg.jpg": "/rola-frontend/static/media/login-bg.7e46ce9567970ef7b59f.jpg",
     "static/media/logo.png": "/rola-frontend/static/media/logo.e34594e3d199653f53fb.png",
     "index.html": "/rola-frontend/index.html",
-    "main.e256e4c9.css.map": "/rola-frontend/static/css/main.e256e4c9.css.map",
-    "main.a6b144c5.js.map": "/rola-frontend/static/js/main.a6b144c5.js.map",
+    "main.44ad3caa.css.map": "/rola-frontend/static/css/main.44ad3caa.css.map",
+    "main.d5e7efdc.js.map": "/rola-frontend/static/js/main.d5e7efdc.js.map",
     "453.11f38227.chunk.js.map": "/rola-frontend/static/js/453.11f38227.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e256e4c9.css",
-    "static/js/main.a6b144c5.js"
+    "static/css/main.44ad3caa.css",
+    "static/js/main.d5e7efdc.js"
   ]
 }

@@ -6,6 +6,7 @@
   margin-top: -1.2rem;
   z-index: 3; /* Optional: Ensure the box is above other content */
   display: flex;
+  cursor: pointer;
 }
 
 .nome {

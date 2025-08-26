@@ -56,20 +56,19 @@ const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
     isRoll = true;
 
     // Tudo depois do "#d"
-    const afterD = newMessage.slice(2).trim();
-    const [expression, ...extraParts] = afterD.split(" ");
+    const afterD = newMessage.slice(2).trim(); // pega "20 + 10"
 
+    // Regex para capturar dado + modificador opcional
+
+    const [expression, ...extraParts] = afterD.split(" ");
     // Junta o resto (pode ser várias palavras) e colore os #extras
     const extraText = extraParts
-      .map((word: string) =>
-        word.startsWith("#")
-          ? `<span style="color: ${color}">${word}</span>`
-          : word
-      )
+      .filter((word: string) => word.startsWith("#")) // só pega palavras que começam com #
+      .map((word: string) => `<span style="color: ${color}">${word}</span>`)
       .join(" ");
 
     // Regex para capturar dado + modificador
-    const match = expression.match(/^(\d+)\s*([+-])?\s*(\d+)?$/);
+    const match = afterD.match(/^(\d+)\s*([+-])?\s*(\d+)?/);
 
     if (!match) {
       finalMessage = "Formato inválido! Use ex: #d20, #d20+1, #d20 -2";
@@ -97,16 +96,16 @@ const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
           ? `rolou um <span style="color: ${color}">#d${dice} ${signal} ${mod}</span> e tirou <b>${finalResult}</b>`
           : `rolou um <span style="color: ${color}">#d${dice}</span> e tirou <b>${finalResult}</b>`;
 
+      // Adiciona o dado bruto e modificador entre parênteses (se não for natural)
+      if (diceResult !== 1 && diceResult !== 20 && signal && mod) {
+        finalMessage += ` (<span style="color: ${color}">${diceResult} ${signal} ${mod}</span>)`;
+      }
+
       // Trata natural 1 ou 20
       if (diceResult === 1 || diceResult === 20) {
-        finalMessage +=
-          signal && mod
-            ? ` (<span style="color: ${color}"><b style="color: ${color}>natural ${diceResult}</b> ${signal} ${mod}</span>)`
-            : ` (<span style="color: ${color}"><b style="color: ${color}>natural ${diceResult}</b></span>)`;
-      } else {
-        if (signal && mod) {
-          finalMessage += ` (<span style="color: ${color}">${diceResult} ${signal} ${mod}</span>)`;
-        }
+        finalMessage += signal
+          ? ` (<span style="color: ${color}"><b style="color: ${color}">natural ${diceResult}</b> ${signal} ${mod}</span>)`
+          : ` (<span style="color: ${color}"><b style="color: ${color}">natural ${diceResult}</b></span>)`;
       }
 
       // Se tiver extra (#percepção, #força, etc), adiciona no final

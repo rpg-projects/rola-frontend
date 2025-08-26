@@ -162,3 +162,48 @@
 .color-option:hover {
   background: #f0f0f0;
 }
+
+/* Container do ícone */
+.title-container {
+  display: flex;
+}
+
+.info-icon-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 12px;
+}
+
+/* Ícone */
+.info-icon {
+  font-size: 1.4rem;
+  color: #00796b;
+  cursor: pointer;
+}
+
+/* Pop-up de informações */
+.info-pop {
+  position: absolute; /* em relação ao info-icon-container */
+  top: 120%; /* logo abaixo do ícone */
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  width: 30rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* garante que fique acima de tudo */
+  font-family: "Inter", sans-serif;
+}
+
+.info-pop ul {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.info-pop li,
+b {
+  margin-bottom: 6px;
+  font-family: "Inter", sans-serif;
+}

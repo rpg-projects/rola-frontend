@@ -64,6 +64,9 @@ const Room = () => {
   const [userChar, setUserChar] = useState(""); // Store the new message input
   const [showColorSelect, setShowColorSelect] = useState(false);
 
+  const [showInfo, setShowInfo] = useState(false);
+  const infoRef = useRef<HTMLDivElement>(null);
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -114,6 +117,20 @@ const Room = () => {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, [messages]); // toda vez que messages mudar
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
+        setShowInfo(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const sendMessage = async (messageOverride?: string) => {
     const messageToSend = messageOverride ?? newMessage;
@@ -187,7 +204,43 @@ const Room = () => {
     <div className="outer-container-rooms">
       <div className="room-container">
         <LogoBox style={{ marginTop: "10px" }} className="custom-logo-box" />
-        <h1>Sala: {roomName}</h1>
+        <div className="title-container">
+          <h1>Sala: {roomName}</h1>
+
+          <div className="info-icon-container" ref={infoRef}>
+            <span
+              className="info-icon"
+              onClick={() => setShowInfo(!showInfo)}
+              title="Comandos disponíveis"
+            >
+              ℹ️
+            </span>
+
+            {showInfo && (
+              <div className="info-pop">
+                Comandos do chat:
+                <ul>
+                  <li>
+                    <b>#d + [mod]</b> → rola o dado com modificador (ex: #d20 +
+                    1)
+                  </li>
+                  <li>
+                    <b>/char [nome]</b> → muda o personagem (ex: /char Ellie)
+                  </li>
+                  <li>
+                    <b>/color</b> → abre um seletor de cores para você escolher
+                  </li>
+                  <li>
+                    <b>/- ou ---</b> → passa uma linha horizontal no chat
+                  </li>
+                  <li>
+                    <b>/b [texto]</b> → escreve em negrito
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Messages container */}
         <div className="messages-container" ref={containerRef}>

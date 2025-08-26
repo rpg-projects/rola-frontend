@@ -56,6 +56,7 @@
 
   font-family: "Inter", sans-serif;
   font-size: 1rem;
+  position: relative;
 }
 
 /* Individual message styling */
@@ -113,4 +114,29 @@
 
 .message-input-container button:hover {
   background-color: #004d40;
+}
+
+/* Wrapper para input + select */
+.message-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.suggestion-select {
+  position: absolute;
+  bottom: 100%; /* sobe para cima do input */
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  z-index: 10;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.color-option:hover {
+  background: #f0f0f0;
 }

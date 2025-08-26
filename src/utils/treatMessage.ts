@@ -90,9 +90,11 @@ const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
     char = newMessage.split(" ")[1].split(" ")[0];
     finalMessage = `atualizou char para <b>${char}</b>`;
   } else if (newMessage.startsWith("/color")) {
+    console.log("newMessage :>> ", newMessage);
     isColor = true;
     color = newMessage.split(" ")[1].split(" ")[0];
-    finalMessage = `atualizou cor para ${color}`;
+    const colorName = newMessage.split("- ")[1];
+    finalMessage = `atualizou cor para <span style="color:${color}">${colorName}</span>`;
   } else if (newMessage.startsWith("/-") || newMessage.startsWith("---")) {
     isPassingLine = true;
     finalMessage = `<hr>`;

@@ -85,6 +85,7 @@ function Login(props: any) {
             <InputWrapper
               style={{
                 fontFamily: "Sorts Mill Goudy",
+                color: "black",
               }}
             >
               <StyledInput

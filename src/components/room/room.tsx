@@ -195,18 +195,26 @@ const Room = () => {
           {messages.map((message, index) => (
             <div key={index} className="message">
               {message.char !== "" ? (
-                <>
+                <div className="username" style={{ display: "inline" }}>
                   <span
                     style={{
-                      color: message.color,
+                      color: "#9898a7",
                     }}
                   >
                     ({message.user})
                   </span>
-                  <strong>{message.char}</strong>
-                </>
+                  <strong
+                    style={{
+                      color: message.color,
+                    }}
+                  >
+                    {message.char}
+                  </strong>
+                </div>
               ) : (
-                <strong style={{ color: message.color }}>{message.user}</strong>
+                <span className="username" style={{ color: message.color }}>
+                  {message.user}
+                </span>
               )}
               {message.message_writer === "user" ? <span>: </span> : " "}
               <span
@@ -245,6 +253,30 @@ const Room = () => {
           )}
 
           <div className="message-input-container">
+            <div className="username-on-input">
+              {userChar !== "" ? (
+                <div className="username" style={{ display: "inline" }}>
+                  <span
+                    style={{
+                      color: "#9898a7",
+                    }}
+                  >
+                    ({playerId})
+                  </span>
+                  <strong
+                    style={{
+                      color: userColor,
+                    }}
+                  >
+                    {userChar}
+                  </strong>
+                </div>
+              ) : (
+                <span className="username" style={{ color: userColor }}>
+                  {playerId}
+                </span>
+              )}
+            </div>
             <input
               type="text"
               value={newMessage}

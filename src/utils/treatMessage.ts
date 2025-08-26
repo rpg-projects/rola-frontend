@@ -55,35 +55,64 @@ const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
   if (newMessage.startsWith("#d")) {
     isRoll = true;
 
-    [dice, signal, mod] = newMessage.split("#d")[1].split(" ");
+    // Tudo depois do "#d"
+    const afterD = newMessage.slice(2).trim();
+    const [expression, ...extraParts] = afterD.split(" ");
 
-    diceResult = getRandomIntInclusive(1, dice);
+    // Junta o resto (pode ser várias palavras) e colore os #extras
+    const extraText = extraParts
+      .map((word: string) =>
+        word.startsWith("#")
+          ? `<span style="color: ${color}">${word}</span>`
+          : word
+      )
+      .join(" ");
 
-    if (signal && mod)
-      finalResult =
-        signal === "+"
-          ? Number(diceResult) + Number(mod)
-          : Number(diceResult) - Number(mod);
-    else finalResult = diceResult;
+    // Regex para capturar dado + modificador
+    const match = expression.match(/^(\d+)\s*([+-])?\s*(\d+)?$/);
 
-    finalMessage =
-      signal && mod
-        ? `rolou um <span style="color: ${color}">#d${dice} ${signal} ${mod}</span> e tirou <b>${finalResult}</b>`
-        : `rolou um <span style="color: ${color}">#d${dice}</span> e tirou <b>${finalResult}</b>`;
-
-    if (diceResult === 1 || diceResult === 20) {
-      finalMessage =
-        signal && mod
-          ? finalMessage +
-            ` (<span style="color: ${color}"><b>natural ${diceResult}</b> ${signal} ${mod}</span>)`
-          : finalMessage +
-            ` (<span style="color: ${color}"><b>natural ${diceResult}</b></span>)`;
+    if (!match) {
+      finalMessage = "Formato inválido! Use ex: #d20, #d20+1, #d20 -2";
     } else {
+      const [, dice, signal, mod] = match;
+
+      console.log("dice :>> ", dice);
+      console.log("signal :>> ", signal);
+      console.log("mod :>> ", mod);
+
+      diceResult = getRandomIntInclusive(1, dice);
+
+      if (signal && mod) {
+        finalResult =
+          signal === "+"
+            ? Number(diceResult) + Number(mod)
+            : Number(diceResult) - Number(mod);
+      } else {
+        finalResult = diceResult;
+      }
+
+      // Mensagem base
       finalMessage =
         signal && mod
-          ? finalMessage +
-            ` (<span style="color: ${color}">${diceResult} ${signal} ${mod}</span>)`
-          : finalMessage;
+          ? `rolou um <span style="color: ${color}">#d${dice} ${signal} ${mod}</span> e tirou <b>${finalResult}</b>`
+          : `rolou um <span style="color: ${color}">#d${dice}</span> e tirou <b>${finalResult}</b>`;
+
+      // Trata natural 1 ou 20
+      if (diceResult === 1 || diceResult === 20) {
+        finalMessage +=
+          signal && mod
+            ? ` (<span style="color: ${color}"><b style="color: ${color}>natural ${diceResult}</b> ${signal} ${mod}</span>)`
+            : ` (<span style="color: ${color}"><b style="color: ${color}>natural ${diceResult}</b></span>)`;
+      } else {
+        if (signal && mod) {
+          finalMessage += ` (<span style="color: ${color}">${diceResult} ${signal} ${mod}</span>)`;
+        }
+      }
+
+      // Se tiver extra (#percepção, #força, etc), adiciona no final
+      if (extraText) {
+        finalMessage += ` ${extraText}`;
+      }
     }
   } else if (newMessage.startsWith("/char")) {
     isChangingChar = true;
@@ -98,6 +127,8 @@ const TreatMessage = (color: string, char: string, newMessage: any): Extras => {
   } else if (newMessage.startsWith("/-") || newMessage.startsWith("---")) {
     isPassingLine = true;
     finalMessage = `<hr>`;
+  } else if (newMessage.startsWith("/b")) {
+    finalMessage = `<b>${newMessage.split(" ")[1]}</b>`;
   }
 
   if (isColor || isChangingChar || isPassingLine || isRoll)

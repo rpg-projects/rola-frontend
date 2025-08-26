@@ -94,8 +94,8 @@ const Room = () => {
 
     // Listen for incoming messages from other users in the room
     socket.on("receive_message", (data: Message) => {
-      console.log("Received message:", data); // Log the entire message
-      console.log("Timestamp:", data.timestamp); // Log timestamp separately for debugging
+      // console.log("Received message:", data); // Log the entire message
+      // console.log("Timestamp:", data.timestamp); // Log timestamp separately for debugging
       setMessages((prevMessages) => [...prevMessages, data]);
     });
 
@@ -117,7 +117,6 @@ const Room = () => {
 
   const sendMessage = async (messageOverride?: string) => {
     const messageToSend = messageOverride ?? newMessage;
-    console.log("messageToSend :>> ", messageToSend);
 
     if (messageToSend.trim()) {
       try {
@@ -142,8 +141,8 @@ const Room = () => {
         if (char !== userChar) setUserChar(char);
 
         //color e char vão ter que vir da prop. active char e active color do user!!!
-        console.log("userColor :>> ", userColor);
-        console.log("userChar :>> ", userChar);
+        // console.log("userColor :>> ", userColor);
+        // console.log("userChar :>> ", userChar);
 
         // emitir para o socket
         socket.emit("send_message", {
